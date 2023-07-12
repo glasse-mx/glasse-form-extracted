@@ -1,6 +1,12 @@
 
-export const TextAreaField = () => {
+export const TextAreaField = ({id, label }) => {
   return (
-    <div>TextAreaField</div>
+    <textarea 
+      name="Mensaje" 
+      id={`input_${id}`} 
+      cols="30" 
+      rows="10" 
+      placeholder={label}
+    ></textarea>
   )
 }

@@ -7,16 +7,29 @@ export const FieldSelector = ({field}) => {
 
   switch (field.type) {
     case "name":
-      return <NameField />
+      return <NameField 
+          field={field}
+          id={field.id}
+          inputs={field.inputs}
+        />
 
     case "phone":
-      return <PhoneField />
+      return <PhoneField 
+        id={field.id}
+        label={field.label}
+      />
 
     case "email":
-      return <EmailField />
+      return <EmailField 
+        id={field.id}
+        label={field.label}
+      />
     
     case "textarea":
-      return <TextAreaField />
+      return <TextAreaField 
+        label={field.label}
+        id={field.id} 
+      />
   
     default:
       return <p>Campo no soportado</p>

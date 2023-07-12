@@ -6,7 +6,6 @@ export const GravityRawForm = () => {
   const gravityForm = geGravityRaw(1)
   const {title, description, fields, button } = gravityForm
 
-  console.log(gravityForm)
   return (
     <>
       {
