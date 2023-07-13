@@ -1,23 +1,17 @@
-import { useState } from "react"
 
-export const PhoneField = ({label,id}) => {
-  
-  const [phoneValue, setPhoneValue] = useState('')
-
-  const onPhoneChange = (e) => {
-    e.preventDefault()
-    setPhoneValue(e.target.value)
-  }
+export const PhoneField = ({label, id, state, setState}) => {
   
   return (
-    <input id={`input_${id}`} 
+    <div className="field_row">
+      <input id={`input_${id}`} 
       type="tel" 
-      name="Telefono" 
+      name={`input_${id}`} 
       placeholder={label} 
-      value={phoneValue} 
-      onChange={onPhoneChange} 
+      state={state}
+      onChange={setState}
       required
     />
+    </div>
   )
 }
 

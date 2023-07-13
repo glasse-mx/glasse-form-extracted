@@ -1,24 +1,17 @@
-import { useState } from "react"
 
-export const EmailField = ({id,label,isRequired}) => {
-  
-  const [ emailValue, setEmailValue ] = useState('')
-
-  const onEmailChange = (e) => {
-    e.preventDefault()
-    setEmailValue(e.target.value)
-  }
+export const EmailField = ({id,label,state, setState}) => {
 
   return (
-    <input 
+    <div className="field_row">
+      <input 
       id={`input_${id}`} 
       type="email" 
-      name="email" 
+      name={`input_${id}`}  
       placeholder={label} 
-      value={emailValue}
-      onChange={onEmailChange}
-      // { ...isRequired && 'required'}
+      state={state}
+      onChange={setState}
       required
     />
+    </div>
   )
 }

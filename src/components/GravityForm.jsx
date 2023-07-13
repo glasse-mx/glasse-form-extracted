@@ -1,9 +1,30 @@
 import { FieldSelector} from "./FieldSelector"
-import { SubmitField } from "./fields"
+import { useState, useEffect } from "react"
+import { onGravitySubmit } from "../utils/submitGravity"
 
-export const GravityForm = ({title, description, fields,button}) => {
+
+export const GravityForm = ({id, title, description, fields,button}) => {
+
+  const [formState, setFormState] = useState({})
+
+  const onGravityChanged = ({target}) => {
+    const {name, value} = target
+    setFormState({
+      ...formState,
+      [name]: value
+    })
+  }
+
+  const onGravitySubmission = (e) => {
+    e.preventDefault()
+    onGravitySubmit(formState, 1)
+  }
+
+
+  
+
   return (
-    <form>
+    <form onSubmit={onGravitySubmission}>
      
      <div className="form__header">
       { title && <h3>{title}</h3>}
@@ -12,17 +33,17 @@ export const GravityForm = ({title, description, fields,button}) => {
 
      <div className="form__body">
       {
-        fields?.map( field => <FieldSelector key={field.id} field={field} /> )
+        fields?.map( field => <FieldSelector key={field.id} field={field} state={formState} setState={onGravityChanged} /> )
       }
      </div>
      
      <div className="form__footer">
-        <SubmitField 
-          
+        <input 
+          type="submit" 
+          value={button?.text ? button.text : "Envia tu Mensaje"} 
+
         />
      </div>
-
-
     </form>
   )
 }

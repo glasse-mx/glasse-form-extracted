@@ -1,19 +1,22 @@
-import { useState } from "react"
+import { TextField } from "./TextField"
 
-export const NameField = ({inputs}) => {
+export const NameField = ({inputs, state, setState}) => {
 
-  // const [nameValue, setNameValue] = useState({})
-
-  // const onNameChange = (e) => {
-  //   e.preventDefault()
-  //   setNameValue(e.target.value)
-  // }
   return (
     <div className="name__row">
       {
         inputs 
           ? inputs.map( 
-            input => <input key={`input_name_${input.id}`} type="text" />
+            input => (
+              !(input?.isHidden) 
+                && <TextField 
+                      key={input.id}
+                      id={input.id}
+                      label={input.label}
+                      state={state}
+                      setState={setState}
+                   /> 
+              )
             )
           : <p>"No hay campos"</p>
       }

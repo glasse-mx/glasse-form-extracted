@@ -11,6 +11,7 @@ export const GravityRawForm = () => {
       {
         gravityForm 
           ? <GravityForm 
+              id={1}
               title={title}
               description={description} 
               fields={fields}

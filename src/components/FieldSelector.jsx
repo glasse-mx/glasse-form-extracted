@@ -1,9 +1,6 @@
-import { EmailField } from "./fields/EmailField"
-import { NameField } from "./fields/NameField"
-import { PhoneField } from "./fields/PhoneField"
-import { TextAreaField } from "./fields/TextAreaField"
+import { NameField, PhoneField, EmailField, TextAreaField } from "./fields"
 
-export const FieldSelector = ({field}) => {
+export const FieldSelector = ({field, state, setState}) => {
 
   switch (field.type) {
     case "name":
@@ -11,24 +8,32 @@ export const FieldSelector = ({field}) => {
           field={field}
           id={field.id}
           inputs={field.inputs}
+          state={state}
+          setState={setState}
         />
 
     case "phone":
       return <PhoneField 
         id={field.id}
         label={field.label}
+        state={state}
+        setState={setState}
       />
 
     case "email":
       return <EmailField 
         id={field.id}
         label={field.label}
+        state={state}
+        setState={setState}
       />
     
     case "textarea":
       return <TextAreaField 
         label={field.label}
-        id={field.id} 
+        id={field.id}
+        state={state} 
+        setState={setState}
       />
   
     default:
