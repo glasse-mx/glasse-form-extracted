@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { getAuthorizationHeader } from "../hooks/useOAuthSignature" 
 
 export const geGravityRaw = (id) => {
   const url = import.meta.env.VITE_PUBLIC_WORDPRESS_URL;
   const [gravityForm, setGravityForm] = useState({});
 
+
   const options = {
     method: "get",
-    maxBodyLength: Infinity,
     url: `${url}${id}`,
     headers: {
-      // 'Authorization': `OAuth oauth_consumer_key="${consumerKey}", oauth_nonce="${oauthNonce}", oauth_signature="${oauthSignature}", oauth_signature_method="HMAC-SHA1", oauth_timestamp="${timestamp}", oauth_version="1.0"`
+      'Authorization': getAuthorizationHeader('GET','1')
     },
   };
 
