@@ -1,34 +1,36 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { getAuthorizationHeader } from "../hooks/useOAuthSignature" 
 
-export const geGravityRaw = async (id) => {
+export const geGravityRaw = (id,loading, setLoading) => {
   const url = import.meta.env.VITE_PUBLIC_WORDPRESS_URL;
+  const username = import.meta.env.VITE_PRIVATE_USER_APP_USER
+  const password = import.meta.env.VITE_PRIVATE_USER_APP_KEY
+  const basicAuth = 'Basic ' + btoa(username + ':' + password);
   const [gravityForm, setGravityForm] = useState({});
 
+  const config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: url + id,
+      headers: {
+        'Authorization': basicAuth,
+        'Content-Type': 'application/json',
 
-  const options = {
-    method: "GET",
-    maxBodyLength: Infinity,
-    url: `${url}${id}`,
-    headers: {
-      Authorization: getAuthorizationHeader('GET','1'),
-      'Content-Tpe': 'application/json'
-    },
-  };
+      },
+      withCredentials: true
+    }
 
-  // useEffect(() => {
-  //   axios
-  //     .request(options)
-  //     .then(function (response) {
-  //       setGravityForm(response.data);
-  //     })
-  //     .catch(function (error) {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect( () => {
+    axios.request(config)
+      .then( response => {
+        setGravityForm(response.data)
+        setLoading(false)
+      })
+      .catch( error => console.error )
+  }, [])
+ 
 
-  const formulari0 = await axios.get('https://app.glasse.com.mx/wp-json/gf/v2/forms/1',options)
-  console.log(formulari0)
+
+  
   return gravityForm;
 };
