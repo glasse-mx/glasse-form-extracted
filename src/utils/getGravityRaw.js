@@ -13,7 +13,7 @@ export const geGravityRaw = (id,loading, setLoading) => {
       maxBodyLength: Infinity,
       url: url + id,
       headers: {
-        'Authorization': basicAuth,
+        // 'Authorization': basicAuth,
         'Content-Type': 'application/json',
 
       },
