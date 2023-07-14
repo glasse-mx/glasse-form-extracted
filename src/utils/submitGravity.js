@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const onGravitySubmit = (body, formId, loading, setLoading, submitted, sendSubmission) => {
 
+
+  const url = import.meta.env.VITE_PUBLIC_WORDPRESS_URL;
   const username = import.meta.env.VITE_PRIVATE_USER_APP_USER
   const password = import.meta.env.VITE_PRIVATE_USER_APP_KEY
   const basicAuth = 'Basic ' + btoa(username + ':' + password);
@@ -9,7 +11,7 @@ export const onGravitySubmit = (body, formId, loading, setLoading, submitted, se
   const config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: `http://freddomx.local/wp-json/gf/v2/forms/${formId}/submissions`,
+    url: `${url}${formId}/submissions`,
     headers: {
       'Authorization': basicAuth,
       "Content-Type": "application/json",
